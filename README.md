@@ -1,8 +1,40 @@
 # BottomlessHash
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bottomless_hash`. To experiment with that code, run `bin/console` for an interactive prompt.
+[firedev.com/2015/bottomless-ruby-hash](http://firedev.com/2015/bottomless-ruby-hash)
 
-TODO: Delete this and the text above, and describe your gem
+`BottomlessHash` is a subclass or Ruby Hash that allows you to blindly
+assign values without raising errors on missing keys. So you can do chained
+assings and accessing keys without checking or using `.try.try.try...`.
+
+```ruby
+params = BottomlessHash.new
+params[:world][:thailand][:bangkok][:bangna]
+
+params
+=> {:world=>{:thailand=>{:bangkok=>{:bangna=>{}}}}}
+
+params[:missing][:key]
+=> {} # no error raised
+```
+
+### Caveat
+
+It returns an empty hash instead of `nil` if there is no value. Keep that in mind:
+
+```ruby
+BottomlessHash.new[:missing][:key]
+=> {}
+```
+
+### Hash.bottomless
+
+It also adds `#bottomless` method to Ruby `Hash` Class so now you can have
+as save version of your hash:
+
+```ruby
+yaml.bottomless[:see][:if][:there][:is][:a][:value][:here]
+=> {} # apparently there is not
+```
 
 ## Installation
 
@@ -20,22 +52,8 @@ Or install it yourself as:
 
     $ gem install bottomless_hash
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bottomless_hash. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+[firedev.com](http://firedev.com)
