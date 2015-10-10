@@ -1,6 +1,7 @@
 # BottomlessHash
 
 [firedev.com/2015/bottomless-ruby-hash](http://firedev.com/2015/bottomless-ruby-hash)
+[firedev.com/posts/2015/making-bottomless-hash-ruby-gem](http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem)
 
 `BottomlessHash` is a subclass or Ruby Hash that allows you to blindly
 assign values without raising errors on missing keys. So you can do chained
